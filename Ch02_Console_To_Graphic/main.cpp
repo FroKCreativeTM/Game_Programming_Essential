@@ -45,10 +45,10 @@ void MainLoop()
 	{
 		isCleared = true;
 	}
-
+	
 	cout << "a:left, d:right, w:up, s:down. command : ";
 	char input;
-	cin >> input;
+	GameLib::cin >> input;
 
 	// 입력을 바탕으로 업데이트 한다.
 	g_GameState->Update(input);
@@ -64,6 +64,13 @@ void MainLoop()
 
 		GameLib::Framework::instance().requestEnd();
 	}
+	if (input == 'q')
+	{
+		delete g_GameState;
+		g_GameState = nullptr;
+		GameLib::Framework::instance().requestEnd();
+	}
+
 }
 
 namespace GameLib

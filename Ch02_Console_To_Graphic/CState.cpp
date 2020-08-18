@@ -61,6 +61,7 @@ CState::CState(char* stageData, int fileSize)
 			t = OBJ_UNKNOWN; 
 			break;
 		}
+
 		if (t != OBJ_UNKNOWN) 
 		{ 
 			m_Objects(x, y) = t; // 맵을 상태별로 매칭한다.
@@ -91,8 +92,8 @@ bool CState::checkClear()
 
 void CState::SetSize(const char* stageData, int size)
 {
-	m_nWidth = m_nHeight = 0; //룊딖돸
-	//뙸띪댧뭫
+	m_nWidth = m_nHeight = 0;
+
 	int x = 0;
 	int y = 0;
 	for (int i = 0; i < size; ++i) 
@@ -123,16 +124,13 @@ void CState::DrawCell(int x, int y, unsigned color)
 	{
 		for (int j = 0; j < 16; j++)
 		{
-			vram[(y * 16 + i) * windowWidth + (x * 16 * j)] = color;
+			vram[(y * 16 + i) * windowWidth + (x * 16 + j)] = color;
 		}
 	}
 }
 
 void CState::Draw()
 {
-	unsigned* vram = GameLib::Framework::instance().videoMemory();
-	unsigned windowWidth = GameLib::Framework::instance().width();
-
 	for (int y = 0; y < m_nHeight; y++)
 	{
 		for (int x = 0; x < m_nWidth; x++)
@@ -159,7 +157,7 @@ void CState::Draw()
 					break;
 				case OBJ_PLAYER:
 					cout << 'P';
-					color = 0x00ff00;
+					color = 0x00ffff;
 					break;
 				}
 			}
@@ -210,8 +208,6 @@ void CState::Update(char input)
 		break;
 	case 's':	// 오른쪽으로 가는 경우
 		dy = 1;
-		break;
-	default:
 		break;
 	}
 
@@ -266,7 +262,7 @@ void CState::Update(char input)
 		int ty2 = ty + dy;
 
 		// 밀 수 없다.
-		if (tx2 < 0 || ty2 < 0 || tx2 >= m_nWidth || ty2 >= m_nHeight)
+		if (tx2 < 0 || ty2 < 0 || tx2 >= w || ty2 >= h)
 		{
 			return;
 		}

@@ -19,7 +19,7 @@ inline void Array2D<T>::SetSize(int w, int h)
 {
 	m_nWidth = w;
 	m_nHeight = h;
-	m_Array = new T[m_nWidth * m_nHeight];
+	m_Array = new T[w * h];
 }
 
 template<typename T>
