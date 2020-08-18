@@ -46,7 +46,7 @@ void MainLoop()
 		isCleared = true;
 	}
 	
-	cout << "a:left, d:right, w:up, s:down. command : ";
+	GameLib::cout << "a:left, d:right, w:up, s:down. command : ";
 	char input;
 	GameLib::cin >> input;
 
