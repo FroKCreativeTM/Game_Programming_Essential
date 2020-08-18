@@ -2,7 +2,7 @@
 
 template<typename T>
 Array2D<T>::Array2D() :
-	m_Array(nullptr)
+	m_Array(nullptr), m_nWidth(0), m_nHeight(0)
 {
 }
 

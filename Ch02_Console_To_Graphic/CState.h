@@ -1,6 +1,8 @@
 #pragma once
 
-#include "Include.h"
+enum Object;
+template <typename T>
+class Array2D;
 
 // 게임 관련 전반을 관리한다.
 class CState

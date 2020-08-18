@@ -1,3 +1,4 @@
+#include "Include.h"
 #include "CState.h"
 
 CState::CState(char* stageData, int fileSize)
@@ -48,7 +49,7 @@ CState::CState(char* stageData, int fileSize)
 			t = OBJ_PLAYER; 
 			break;
 		case 'P': 
-			t = OBJ_PLAYER_ON_GOAL; 
+			t = OBJ_PLAYER; 
 			goalFlag = true; 
 			break;
 		case '\n': 
@@ -77,7 +78,10 @@ bool CState::checkClear()
 		{
 			if (m_Objects(x, y) == OBJ_BLOCK)
 			{
-				return false;
+				if (m_GoalFlags(x, y) == false) 
+				{
+					return false;
+				}
 			}
 		}
 	}
@@ -181,7 +185,7 @@ void CState::Draw()
 					break;
 				}
 			}
-			vram[y * windowWidth + x] = color;
+			DrawCell(x, y, color);
 		}
 		cout << endl;
 	}

@@ -6,8 +6,8 @@ class Array2D
 {
 private : 
 	T* m_Array;
-	const int m_nWidth;
-	const int m_nHeight;
+	int m_nWidth;
+	int m_nHeight;
 
 public : 
 	Array2D();

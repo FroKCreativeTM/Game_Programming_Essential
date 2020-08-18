@@ -45,4 +45,7 @@
   <ItemGroup>
     <Text Include="Stage1.txt" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="README.md" />
+  </ItemGroup>
 </Project>
