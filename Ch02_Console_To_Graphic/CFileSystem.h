@@ -13,7 +13,7 @@ public :
 
 	void ReadFile(char** buffer, int* size, const char* fileName)
 	{
-		ifstream in(fileName, ifstream::binary);
+		std::ifstream in(fileName, std::ifstream::binary);
 		if (!in)
 		{
 			*buffer = nullptr;
@@ -21,9 +21,9 @@ public :
 		}
 		else
 		{
-			in.seekg(0, ifstream::end);
+			in.seekg(0, std::ifstream::end);
 			*size = static_cast<int>(in.tellg());
-			in.seekg(0, ifstream::beg);
+			in.seekg(0, std::ifstream::beg);
 			*buffer = new char[*size];
 			in.read(*buffer, *size);
 		}

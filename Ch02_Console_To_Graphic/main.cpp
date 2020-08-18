@@ -22,7 +22,6 @@ void MainLoop()
 		// 만약 스테이지가 읽히지 않았다면
 		if (!stageData)
 		{
-			MessageBox(nullptr, "스테이지 불러오기 에러", "스테이지 불러오기 에러", MB_OK);
 			return;
 		}
 
@@ -58,7 +57,6 @@ void MainLoop()
 	// 만약 클리어 한 경우
 	if (isCleared)
 	{
-		MessageBox(nullptr, "You're Winner!", "Win", MB_OK);
 		delete g_GameState;
 		g_GameState = nullptr;
 

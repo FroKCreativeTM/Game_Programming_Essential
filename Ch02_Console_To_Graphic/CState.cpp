@@ -106,8 +106,8 @@ void CState::SetSize(const char* stageData, int size)
 			break;
 		case '\n':
 			++y;
-			m_nWidth = max(m_nWidth, x);
-			m_nHeight = max(m_nHeight, y);
+			m_nWidth = std::max(m_nWidth, x);
+			m_nHeight = std::max(m_nHeight, y);
 			x = 0;
 			break;
 		}
@@ -144,19 +144,19 @@ void CState::Draw()
 				switch (o)
 				{
 				case OBJ_SPACE:
-					cout << '.';
+					GameLib::cout << '.';
 					color = 0x0000ff;
 					break;
 				case OBJ_WALL:
-					cout << '#';
+					GameLib::cout << '#';
 					color = 0xffffff;
 					break;
 				case OBJ_BLOCK:
-					cout << 'O';
+					GameLib::cout << 'O';
 					color = 0xff00ff;
 					break;
 				case OBJ_PLAYER:
-					cout << 'P';
+					GameLib::cout << 'P';
 					color = 0x00ffff;
 					break;
 				}
@@ -166,26 +166,26 @@ void CState::Draw()
 				switch (o)
 				{
 				case OBJ_SPACE:
-					cout << ' ';
+					GameLib::cout << ' ';
 					color = 0x000000;
 					break;
 				case OBJ_WALL:
-					cout << '#';
+					GameLib::cout << '#';
 					color = 0xffffff;
 					break;
 				case OBJ_BLOCK:
-					cout << 'o';
+					GameLib::cout << 'o';
 					color = 0xff0000;
 					break;
 				case OBJ_PLAYER:
-					cout << 'p';
+					GameLib::cout << 'p';
 					color = 0x00ff00;
 					break;
 				}
 			}
 			DrawCell(x, y, color);
 		}
-		cout << endl;
+		GameLib::cout << GameLib::endl;
 	}
 }
 
@@ -241,7 +241,7 @@ void CState::Update(char input)
 	int ty = y + dy;
 
 	// 좌표에서 최대 최소 검사
-	if (tx < 0 || ty < 0 || tx >= m_nWidth || ty >= m_nHeight)
+	if (tx < 0 || ty < 0 || tx >= w || ty >= h)
 	{
 		return;
 	}
