@@ -59,8 +59,6 @@ void MainLoop()
 	{
 		delete g_GameState;
 		g_GameState = nullptr;
-
-		GameLib::Framework::instance().requestEnd();
 	}
 	if (input == 'q')
 	{
@@ -68,7 +66,15 @@ void MainLoop()
 		g_GameState = nullptr;
 		GameLib::Framework::instance().requestEnd();
 	}
-
+	if (Framework::instance().isEndRequested())
+	{
+		if (g_GameState)
+		{
+			delete g_GameState;
+			g_GameState = nullptr;
+		}
+		return;
+	}
 }
 
 namespace GameLib

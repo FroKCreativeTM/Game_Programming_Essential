@@ -212,17 +212,15 @@ void CState::Update(char input)
 	}
 
 	// 플레이어의 좌표 계산
-	int w = m_nWidth;
-	int h = m_nHeight;
 	Array2D<Object>& o = m_Objects;
 
 	int x = -1, y = -1;
 	bool found = false;
 
 	// 플레이어 좌표 검색
-	for (int y = 0; y < m_nHeight; y++)
+	for (y = 0; y < m_nHeight; ++y)
 	{
-		for (int x = 0; x < m_nWidth; x++)
+		for (x = 0; x < m_nWidth; ++x)
 		{
 			if (o(x, y) == OBJ_PLAYER)
 			{
@@ -241,7 +239,7 @@ void CState::Update(char input)
 	int ty = y + dy;
 
 	// 좌표에서 최대 최소 검사
-	if (tx < 0 || ty < 0 || tx >= w || ty >= h)
+	if (tx < 0 || ty < 0 || tx >= m_nWidth || ty >= m_nHeight)
 	{
 		return;
 	}
@@ -255,23 +253,23 @@ void CState::Update(char input)
 		o(x, y) = OBJ_SPACE;
 	}
 	// B. 만약 이동할 곳이 상자 -> 그 방향의 다음칸이 공백이면 이동 가능
-	else if (m_Objects(tx, ty) == OBJ_BLOCK)
+	else if (o(tx, ty) == OBJ_BLOCK)
 	{
 		// 상자 다음을 검사할 변수들
 		int tx2 = tx + dx;
 		int ty2 = ty + dy;
 
 		// 밀 수 없다.
-		if (tx2 < 0 || ty2 < 0 || tx2 >= w || ty2 >= h)
+		if (tx2 < 0 || ty2 < 0 || tx2 >= m_nWidth || ty2 >= m_nHeight)
 		{
 			return;
 		}
 		// 만약 상자 너머가 공백인 경우
-		if (m_Objects(tx2, tx2) == OBJ_SPACE)
+		if (o(tx2, tx2) == OBJ_SPACE)
 		{
-			m_Objects(tx2, ty2) = OBJ_BLOCK;
-			m_Objects(tx, ty) = OBJ_PLAYER;
-			m_Objects(x, y) = OBJ_SPACE;
+			o(tx2, ty2) = OBJ_BLOCK;
+			o(tx, ty) = OBJ_PLAYER;
+			o(x, y) = OBJ_SPACE;
 		}
 	}
 }
