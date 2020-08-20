@@ -264,8 +264,9 @@ void CState::Update(char input)
 		{
 			return;
 		}
+
 		// 만약 상자 너머가 공백인 경우
-		if (o(tx2, tx2) == OBJ_SPACE)
+		if (o(tx2, ty2) == OBJ_SPACE)
 		{
 			o(tx2, ty2) = OBJ_BLOCK;
 			o(tx, ty) = OBJ_PLAYER;
