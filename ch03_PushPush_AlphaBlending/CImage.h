@@ -39,23 +39,63 @@ public:
 		unsigned* vram = f.videoMemory();
 		int nWindowWidth = f.width();
 
+		/*
+		// 가산 블렌딩 방식을 사용한다.
+		// 공식 : aX + Y
+		// 단점 : 다시 검은 색으로 바꿔주지 않는다면 새하얗게 된다.
 		for (int y = 0; y < _height; y++)
 		{
 			for (int x = 0; x < _width; x++)
 			{
-				int pos = (y + srcY) * m_nWidth + (x + srcX);
-				unsigned src = m_Data[pos];
-				int alpha = (src & 0xff000000) >> 24;			// & 0xff000000 : 알파값만 추린다.
+				unsigned src = m_Data[(y + srcY) * m_nWidth + (x + srcX)];
+				unsigned srcA = (src & 0xff000000) >> 24;
+				unsigned srcR = (src & 0x00ff0000) >> 16;
+				unsigned srcG = (src & 0x0000ff00) >> 8;
+				unsigned srcB = (src & 0x000000ff);
 
-				if (alpha >= 128)
-				{
-					pos = (y + dscY) * nWindowWidth + (x + dscX);
-					unsigned* dsc = &vram[pos];
-					*dsc = src;
-				}
+				unsigned* dsc = &vram[(y + dscY) * nWindowWidth + (x + dscX)];
+				unsigned dscR = (*dsc & 0x00ff0000) >> 16;
+				unsigned dscG = (*dsc & 0x0000ff00) >> 8;
+				unsigned dscB = (*dsc & 0x000000ff);
+
+				unsigned R = srcR * srcA / 255 + dscR;
+				unsigned G = srcG * srcA / 255 + dscG;
+				unsigned B = srcB * srcA / 255 + dscB;
+
+				// 범위 검사
+				R = (R > 255) ? 255 : R;
+				G = (G > 255) ? 255 : G;
+				B = (B > 255) ? 255 : B;
+
+				*dsc = (R << 16) | (G << 8) | B;
 			}
 		}
+		*/
 
+		// 알파 블렌딩
+		// 
+		for (int y = 0; y < _height; y++)
+		{
+			for (int x = 0; x < _width; x++)
+			{
+				unsigned src = m_Data[(y + srcY) * m_nWidth + (x + srcX)];
+				unsigned srcA = (src & 0xff000000) >> 24;
+				unsigned srcR = (src & 0x00ff0000);
+				unsigned srcG = (src & 0x0000ff00);
+				unsigned srcB = (src & 0x000000ff);
+
+				unsigned* dsc = &vram[(y + dscY) * nWindowWidth + (x + dscX)];
+				unsigned dscR = (*dsc & 0x00ff0000);
+				unsigned dscG = (*dsc & 0x0000ff00);
+				unsigned dscB = (*dsc & 0x000000ff);
+
+				unsigned R = (srcR-  dscR) * srcA / 255 + dscR;
+				unsigned G = (srcG - dscG) * srcA / 255 + dscG;
+				unsigned B = (srcB - dscB) * srcA / 255 + dscB;
+
+				*dsc = (R & 0x00ff0000) | (G & 0x0000ff00) | B;
+			}
+		}
 	}
 
 public :

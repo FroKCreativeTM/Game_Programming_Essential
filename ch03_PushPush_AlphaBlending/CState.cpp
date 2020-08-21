@@ -73,6 +73,15 @@ CState::CState(const char* stageData, int fileSize)
 	}
 }
 
+CState::~CState()
+{
+	if (m_Image)
+	{
+		delete m_Image;
+	}
+	m_Image = nullptr;
+}
+
 bool CState::checkClear()
 {
 	for (int y = 0; y < m_nHeight; y++)

@@ -16,6 +16,7 @@ private :
 
 public : 
 	CState(const char* stageData, int fileSize);
+	~CState();
 
 private : 
 	void SetSize(const char* stageData, int size);
