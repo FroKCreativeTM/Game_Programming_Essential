@@ -78,6 +78,9 @@ namespace GameLib
 {
 	void Framework::update()
 	{
+		// 1초(1000 밀리세컨드)에 프레임 값으로 나누고 그 만큼 재워서 사용하면 스무스한 애니메이션을 표현할 수 있다.
+		// 다른 방법으로 단순히 루프를 돌기만 하는 비지 루프를 이용해서 애니메이션 프레임을 조절할 수 있다.
+		GameLib::Framework::instance().sleep(1000 / 60);		
 		MainLoop();
 	}
 }
