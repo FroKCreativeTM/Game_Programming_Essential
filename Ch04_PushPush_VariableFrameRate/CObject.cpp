@@ -1,4 +1,5 @@
 #include "CObject.h"
+#include "CState.h"
 
 CObject::CObject() : 
 	m_eType(OBJ_WALL),
@@ -80,9 +81,11 @@ void CObject::DrawForeGround(int x, int y, const CImage* image, int moveCount) c
 
 	if (id != II_SPACE)	// 배경이 아니라면 이동 시작!
 	{
-		int dx = m_nMoveX * (32 - moveCount);
-		int dy = m_nMoveY * (32 - moveCount);
-		image->Draw(x * 32 - dx, y * 32 - dy, id * 32, 0, 32, 32);
+		const int m = CState::GetMaxMoveCount();
+		//	이제 최대값이 MAX_MOVE_COUNT가 되었기에 거기에 움직임 카운트를 뺀다.
+		int dx = (m_nMoveX * (m - moveCount) * 32) / m;		
+		int dy = (m_nMoveY * (m - moveCount) * 32) / m;
+		image->Draw(x * 32 - dx, y * 32 - dy, id * 32, 0, 32, 32); 
 	}
 }
 

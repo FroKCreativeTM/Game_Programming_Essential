@@ -118,10 +118,12 @@ void CState::Draw() const
 	}
 }
 
-void CState::Update()
+// @Param
+// dt : 시간의 변화값을 전달하는 변수 
+void CState::Update(int dt)
 {
-	// 이동 중 카운트가 32가 되면
-	if (m_nMoveCount == 32)
+	// 이동 중 카운트가 M_MAX_MOVE_COUNT에 도달하면
+	if (m_nMoveCount >= M_MAX_MOVE_COUNT)
 	{
 		// 초기화한다.
 		m_nMoveCount = 0;
@@ -140,7 +142,13 @@ void CState::Update()
 	// 이동 중엔 갱신하지 않으므로 바로 return
 	if (m_nMoveCount > 0)
 	{
-		++m_nMoveCount;
+		m_nMoveCount += dt;		// 최댓값을 넘으면 안 되므로 최댓값으로 설정
+
+		if (m_nMoveCount > M_MAX_MOVE_COUNT)
+		{
+			m_nMoveCount = M_MAX_MOVE_COUNT;
+		}
+
 		return;
 	}
 

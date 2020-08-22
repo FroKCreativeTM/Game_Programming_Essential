@@ -4,11 +4,36 @@
 
 /* ========== 전역 변수 ========== */
 CState* g_GameState = nullptr;		// 게임의 상태를 관리하기 위한 클래스입니다.
+const int gFrameInterval = 16;		// 16밀리세컨드(60프레임)
+unsigned gPreviousTime[10];			// 전 시간을 저장해두기 위한 배열
+int gCounter = 0;					// 프레임이 얼마나 진행되었나를 저장한다.
 
 
 /* ========== 전역 함수 ========== */
 void MainLoop()
 {
+	Framework f = Framework::instance();
+
+	f.sleep(1);	// 1 밀리초씩만 재워서 CPU를 이 게임이 모두 점유하는 건 막자..
+
+	// 가변 프레임을 구현하기 위한 변수를 선언한다.
+	unsigned currentTime = f.time();
+	unsigned frameInterval = currentTime - gPreviousTime[9];
+	unsigned frameInterval10 = currentTime - gPreviousTime[0];
+
+	if (gCounter % 60 == 0)
+	{
+		GameLib::cout << "FrameInterval : " << frameInterval10 / 10;
+		GameLib::cout << " FrameRate : " << 10 * 1000 / frameInterval10 << GameLib::endl;
+	}
+	gCounter++;
+
+	for (int i = 0; i < 9; i++)
+	{
+		gPreviousTime[i] = gPreviousTime[i + 1];
+	}
+	gPreviousTime[9] = currentTime;
+
 	// 아직 게임 상태 클래스가 생성되지 않은 경우
 	// 즉 게임이 켜진 경우이다.
 	if (!g_GameState)
@@ -44,7 +69,7 @@ void MainLoop()
 
 
 	// 입력을 바탕으로 업데이트 한다.
-	g_GameState->Update();
+	g_GameState->Update(frameInterval);
 	// 이를 바탕으로 그린다.
 	g_GameState->Draw();
 
