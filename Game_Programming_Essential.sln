@@ -20,6 +20,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Ch03_Dot_To_Image", "Ch03_D
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ch03_PushPush_AlphaBlending", "ch03_PushPush_AlphaBlending\ch03_PushPush_AlphaBlending.vcxproj", "{62AA302B-4A23-4158-9F3A-8EEEC61B97DB}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Ch04_RealTime_PushPush", "Ch04_RealTime_PushPush\Ch04_RealTime_PushPush.vcxproj", "{A19F6CE7-AE1B-4A8C-8B43-2C1B61C061EC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -76,6 +78,14 @@ Global
 		{62AA302B-4A23-4158-9F3A-8EEEC61B97DB}.Release|x64.Build.0 = Release|x64
 		{62AA302B-4A23-4158-9F3A-8EEEC61B97DB}.Release|x86.ActiveCfg = Release|Win32
 		{62AA302B-4A23-4158-9F3A-8EEEC61B97DB}.Release|x86.Build.0 = Release|Win32
+		{A19F6CE7-AE1B-4A8C-8B43-2C1B61C061EC}.Debug|x64.ActiveCfg = Debug|x64
+		{A19F6CE7-AE1B-4A8C-8B43-2C1B61C061EC}.Debug|x64.Build.0 = Debug|x64
+		{A19F6CE7-AE1B-4A8C-8B43-2C1B61C061EC}.Debug|x86.ActiveCfg = Debug|Win32
+		{A19F6CE7-AE1B-4A8C-8B43-2C1B61C061EC}.Debug|x86.Build.0 = Debug|Win32
+		{A19F6CE7-AE1B-4A8C-8B43-2C1B61C061EC}.Release|x64.ActiveCfg = Release|x64
+		{A19F6CE7-AE1B-4A8C-8B43-2C1B61C061EC}.Release|x64.Build.0 = Release|x64
+		{A19F6CE7-AE1B-4A8C-8B43-2C1B61C061EC}.Release|x86.ActiveCfg = Release|Win32
+		{A19F6CE7-AE1B-4A8C-8B43-2C1B61C061EC}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
