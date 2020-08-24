@@ -4,7 +4,8 @@
 
 /* ========== 전역 변수 ========== */
 CState* g_GameState = nullptr;		// 게임의 상태를 관리하기 위한 클래스입니다.
-
+bool	g_IsGameStarted = false;	// 게임의 시작 상태 체크
+CImage* g_TitleImage = nullptr;		// 게임 타이틀
 
 /* ========== 전역 함수 ========== */
 void MainLoop()
@@ -42,7 +43,6 @@ void MainLoop()
 		isCleared = true;
 	}
 
-
 	// 입력을 바탕으로 업데이트 한다.
 	g_GameState->Update();
 	// 이를 바탕으로 그린다.
@@ -51,36 +51,51 @@ void MainLoop()
 	// 만약 클리어 한 경우
 	if (isCleared)
 	{
-		delete g_GameState;
-		g_GameState = nullptr;
+		SAFE_DELETE(g_GameState);
+		g_IsGameStarted = false;
 	}
-	if (Framework::instance().isKeyOn('q'))
+}
+
+void title()
+{
+	if (!g_TitleImage)
 	{
-		if (g_GameState)
-		{
-			delete g_GameState;
-			g_GameState = nullptr;
-		}
-		GameLib::Framework::instance().requestEnd();
+		g_TitleImage = new CImage("title.dds");
 	}
-	if (Framework::instance().isEndRequested())
+	if (GameLib::Framework::instance().isKeyOn(' '))
 	{
-		if (g_GameState)
-		{
-			delete g_GameState;
-			g_GameState = nullptr;
-		}
+		g_IsGameStarted = true;
+		SAFE_DELETE(g_TitleImage);
 		return;
 	}
+	g_TitleImage->Draw(0, 0, 0, 0, g_TitleImage->GetWidth(), g_TitleImage->GetHeight());
 }
 
 namespace GameLib
 {
 	void Framework::update()
 	{
+		if (!g_IsGameStarted)
+		{
+			title();
+		}
+		else
+		{
+			MainLoop();
+		}
+
+		if (Framework::instance().isKeyOn('q'))
+		{
+			GameLib::Framework::instance().requestEnd();
+		}
+		if (Framework::instance().isEndRequested())
+		{
+			SAFE_DELETE(g_GameState);
+			SAFE_DELETE(g_TitleImage);
+		}
+
 		// 1초(1000 밀리세컨드)에 프레임 값으로 나누고 그 만큼 재워서 사용하면 스무스한 애니메이션을 표현할 수 있다.
 		// 다른 방법으로 단순히 루프를 돌기만 하는 비지 루프를 이용해서 애니메이션 프레임을 조절할 수 있다.
-		GameLib::Framework::instance().sleep(1000 / 60);		
-		MainLoop();
+		GameLib::Framework::instance().sleep(1000 / 60);
 	}
 }

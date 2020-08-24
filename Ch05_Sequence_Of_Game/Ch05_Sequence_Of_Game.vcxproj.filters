@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="nimotsuKunImage.dds" />
+    <Image Include="title.dds" />
   </ItemGroup>
   <ItemGroup>
     <None Include="README.md" />

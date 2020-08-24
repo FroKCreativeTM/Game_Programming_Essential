@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="리소스 파일">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Include">
+      <UniqueIdentifier>{6f5c7d92-7cac-4aeb-a653-718c15a6b60c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.GameState">
+      <UniqueIdentifier>{b763fd6f-d1c7-4657-b810-a5ec06071580}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02. GameObject">
+      <UniqueIdentifier>{77876f77-4278-469b-88ac-19541f5b0a66}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainFile">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="03. Image">
+      <UniqueIdentifier>{ad79cdd9-8571-48e7-89fc-952fba01cf2c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. GameLoop">
+      <UniqueIdentifier>{3e7c384d-9255-4141-8550-d13ba5b98965}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Include.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="CObject.h">
+      <Filter>02. GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="CFileSystem.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="CArray2D.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="CImage.h">
+      <Filter>03. Image</Filter>
+    </ClInclude>
+    <ClInclude Include="CGameState.h">
+      <Filter>01.GameState</Filter>
+    </ClInclude>
+    <ClInclude Include="CGameLoop.h">
+      <Filter>04. GameLoop</Filter>
+    </ClInclude>
+    <ClInclude Include="GameMode.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>MainFile</Filter>
+    </ClCompile>
+    <ClCompile Include="CObject.cpp">
+      <Filter>02. GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="CGameState.cpp">
+      <Filter>01.GameState</Filter>
+    </ClCompile>
+    <ClCompile Include="CGameLoop.cpp">
+      <Filter>04. GameLoop</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="README.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="image\clear.dds">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="image\loading.dds">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="image\menu.dds">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="image\nimotsuKunImage2.dds">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="image\stageSelect.dds">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="image\title.dds">
+      <Filter>리소스 파일</Filter>
+    </Image>
+  </ItemGroup>
+</Project>
