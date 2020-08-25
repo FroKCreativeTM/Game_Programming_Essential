@@ -28,6 +28,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Ch05_Sequence_Of_Game", "Ch
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Ch05_Make_Menu", "Ch05_Make_Menu\Ch05_Make_Menu.vcxproj", "{94B3DA60-36AF-47B2-9E1C-868CCE414401}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Ch06_Game_With_Font", "Ch06_Game_With_Font\Ch06_Game_With_Font.vcxproj", "{CC6C1340-C0EE-4488-BDCB-C7662452A12D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -116,6 +118,14 @@ Global
 		{94B3DA60-36AF-47B2-9E1C-868CCE414401}.Release|x64.Build.0 = Release|x64
 		{94B3DA60-36AF-47B2-9E1C-868CCE414401}.Release|x86.ActiveCfg = Release|Win32
 		{94B3DA60-36AF-47B2-9E1C-868CCE414401}.Release|x86.Build.0 = Release|Win32
+		{CC6C1340-C0EE-4488-BDCB-C7662452A12D}.Debug|x64.ActiveCfg = Debug|x64
+		{CC6C1340-C0EE-4488-BDCB-C7662452A12D}.Debug|x64.Build.0 = Debug|x64
+		{CC6C1340-C0EE-4488-BDCB-C7662452A12D}.Debug|x86.ActiveCfg = Debug|Win32
+		{CC6C1340-C0EE-4488-BDCB-C7662452A12D}.Debug|x86.Build.0 = Debug|Win32
+		{CC6C1340-C0EE-4488-BDCB-C7662452A12D}.Release|x64.ActiveCfg = Release|x64
+		{CC6C1340-C0EE-4488-BDCB-C7662452A12D}.Release|x64.Build.0 = Release|x64
+		{CC6C1340-C0EE-4488-BDCB-C7662452A12D}.Release|x86.ActiveCfg = Release|Win32
+		{CC6C1340-C0EE-4488-BDCB-C7662452A12D}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

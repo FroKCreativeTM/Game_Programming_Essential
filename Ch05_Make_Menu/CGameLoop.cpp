@@ -1,137 +1,70 @@
 #include "Include.h"
 #include "CGameLoop.h"
 #include "GameMode.h"
-#include "CImage.h"
+#include "CSelectStage.h"
+#include "CInGame.h"
+#include "CMenu.h"
+#include "CClear.h"
+#include "CTitle.h"
 
 CGameLoop::CGameLoop() : 
-	m_GameState(nullptr),
 	m_eGameMode(GM_TITLE),
-	m_isFirstGame(true)
+	m_isFirstGame(true),
+	m_GameState(nullptr)
 {
 }
 
 CGameLoop::~CGameLoop()
 {
 	SAFE_DELETE(m_GameState);
-	SAFE_DELETE(m_LoopImage);
 }
 
-void CGameLoop::SelectMenu()
+void CGameLoop::SelectStage()
 {
-	GameLib::Framework f = GameLib::Framework::instance();
+	CSelectStage* selectStage = new CSelectStage();
+	selectStage->SelectStage(m_GameStageName, m_eNextGameMode);
 
-	m_LoopImage = new CImage("image/stageSelect.dds");
-	m_LoopImage->Draw(m_LoopImage->GetWidth(), m_LoopImage->GetHeight());
-
-	if (f.isKeyOn('1'))
+	if (m_eGameMode != m_eNextGameMode)
 	{
-		m_GameStageName = "stageData/1.txt";
-	}
-	else if (f.isKeyOn('2'))
-	{
-		m_GameStageName = "stageData/2.txt";
-	}
-	else if (f.isKeyOn('3'))
-	{
-		m_GameStageName = "stageData/3.txt";
-	}
-	else if (f.isKeyOn('4'))
-	{
-		m_GameStageName = "stageData/4.txt";
-	}
-	else if (f.isKeyOn('5'))
-	{
-		m_GameStageName = "stageData/5.txt";
-	}
-	else if (f.isKeyOn('6'))
-	{
-		m_GameStageName = "stageData/6.txt";
-	}
-	else if (f.isKeyOn('7'))
-	{
-		m_GameStageName = "stageData/7.txt";
-	}
-	else if (f.isKeyOn('8'))
-	{
-		m_GameStageName = "stageData/8.txt";
-	}
-	else if (f.isKeyOn('9'))
-	{
-		m_GameStageName = "stageData/9.txt";
+		m_eGameMode = m_eNextGameMode;
+		m_eNextGameMode = GM_NONE;
 	}
 
-	SAFE_DELETE(m_LoopImage);
-
-	SetGameMode(GM_INGAME);
+	SAFE_DELETE(selectStage);
 }
 
 void CGameLoop::Title()
 {
-	if (!m_LoopImage)
-	{
-		m_LoopImage = new CImage("image/title.dds");
-	}
-
-	m_LoopImage->Draw(m_LoopImage->GetWidth(), m_LoopImage->GetHeight());
-
-	if (GameLib::Framework::instance().isKeyOn(' '))
-	{
-		m_eGameMode = GM_MENU;
-		SAFE_DELETE(m_LoopImage);
-	}
+	CTitle* title = new CTitle();
+	title->Draw(m_eGameMode);
+	SAFE_DELETE(title);
 }
 
 void CGameLoop::Menu()
 {
-	GameLib::Framework f = GameLib::Framework::instance();
-
-	if (!m_LoopImage)
-	{
-		m_LoopImage = new CImage("image/menu.dds");
-	}
-	m_LoopImage->Draw(m_LoopImage->GetWidth(), m_LoopImage->GetHeight());
-
-	if (f.isKeyOn('a') && !m_isFirstGame)
-	{
-		m_eGameMode = GM_INGAME;
-	}
-	else if (f.isKeyOn('s'))
-	{
-		m_eGameMode = GM_SELECTSTAGE;
-	}
-	else if (f.isKeyOn('d'))
-	{
-		m_eGameMode = GM_TITLE;
-	}
-	else if (f.isKeyOn('f'))
-	{
-		GameLib::Framework::instance().requestEnd();
-	}
-		
-	SAFE_DELETE(m_LoopImage);
+	CMenu* menu = new CMenu();
+	menu->SelectMenu(m_isFirstGame, m_eGameMode, m_eNextGameMode);
+	SAFE_DELETE(menu);
 }
 
 void CGameLoop::Clear()
 {
-	if (!m_LoopImage)
-	{
-		m_LoopImage = new CImage("image/clear.dds");
-	}
-	m_LoopImage->Draw(m_LoopImage->GetWidth(), m_LoopImage->GetHeight());
+	CClear* clear = new CClear();
+	clear->Draw();
 
-	if (GameLib::Framework::instance().isKeyOn(' '))
+	if (m_eGameMode != m_eNextGameMode &&
+		GameLib::Framework::instance().isKeyTriggered(' '))
 	{
-		m_eGameMode = GM_MENU;
-		SAFE_DELETE(m_LoopImage);
-		return;
+		m_eGameMode = m_eNextGameMode;
+		m_eNextGameMode = GM_NONE;
 	}
+
+	SAFE_DELETE(clear);
 }
 
 void CGameLoop::InGame()
 {
 	Framework f = Framework::instance();
-
-	
 
 	f.sleep(1);	// 1 밀리초씩만 재워서 CPU를 이 게임이 모두 점유하는 건 막자..
 
@@ -172,7 +105,6 @@ void CGameLoop::InGame()
 
 		// 그린다.
 		m_GameState->Draw();
-		m_isFirstGame = false;
 		return; // 함수를 종료한다.
 	}
 
@@ -192,9 +124,10 @@ void CGameLoop::InGame()
 	// 만약 클리어 한 경우
 	if (isCleared)
 	{
-		m_eGameMode = GM_CLEAR;
 		delete m_GameState;
 		m_GameState = nullptr;
+		m_eGameMode = GM_CLEAR;
+		m_eNextGameMode = GM_MENU;
 	}
 	if (Framework::instance().isKeyOn('q'))
 	{

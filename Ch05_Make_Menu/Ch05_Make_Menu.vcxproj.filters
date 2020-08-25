@@ -24,6 +24,15 @@
     <Filter Include="04. GameLoop">
       <UniqueIdentifier>{3e7c384d-9255-4141-8550-d13ba5b98965}</UniqueIdentifier>
     </Filter>
+    <Filter Include="04. GameLoop\01. Title">
+      <UniqueIdentifier>{6c4ab202-f539-4312-a1f8-48f658eb4973}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. GameLoop\02. Menu">
+      <UniqueIdentifier>{bfbe656c-8da1-45fa-b5e4-d271e316cac9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. GameLoop\03. Clear">
+      <UniqueIdentifier>{67cc4541-fdb3-4d25-ad7a-f09723e9b184}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Include.h">
@@ -48,6 +57,18 @@
       <Filter>04. GameLoop</Filter>
     </ClInclude>
     <ClInclude Include="GameMode.h" />
+    <ClInclude Include="CTitle.h">
+      <Filter>04. GameLoop\01. Title</Filter>
+    </ClInclude>
+    <ClInclude Include="CClear.h">
+      <Filter>04. GameLoop\03. Clear</Filter>
+    </ClInclude>
+    <ClInclude Include="CMenu.h">
+      <Filter>04. GameLoop\02. Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="CSelectStage.h">
+      <Filter>01.GameState</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -61,6 +82,18 @@
     </ClCompile>
     <ClCompile Include="CGameLoop.cpp">
       <Filter>04. GameLoop</Filter>
+    </ClCompile>
+    <ClCompile Include="CTitle.cpp">
+      <Filter>04. GameLoop\01. Title</Filter>
+    </ClCompile>
+    <ClCompile Include="CClear.cpp">
+      <Filter>04. GameLoop\03. Clear</Filter>
+    </ClCompile>
+    <ClCompile Include="CMenu.cpp">
+      <Filter>04. GameLoop\02. Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="CSelectStage.cpp">
+      <Filter>01.GameState</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -17,7 +17,7 @@ void MainGame()
 		g_CGameLoop->Title();
 		break;
 	case GM_SELECTSTAGE : 
-		g_CGameLoop->SelectMenu();
+		g_CGameLoop->SelectStage();
 		break;
 	case GM_MENU:
 		g_CGameLoop->Menu();
