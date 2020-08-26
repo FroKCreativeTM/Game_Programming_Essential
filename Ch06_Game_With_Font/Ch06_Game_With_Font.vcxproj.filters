@@ -1,17 +1,113 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="소스 파일">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;c++;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="헤더 파일">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
     <Filter Include="리소스 파일">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="01. GameState">
+      <UniqueIdentifier>{40796ef1-24bc-443a-b256-c622aa564688}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02. Object">
+      <UniqueIdentifier>{1aa50c8a-18b4-42a5-bca1-4647761972f7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03. Image">
+      <UniqueIdentifier>{3b6ec6ea-2b76-459e-878f-ea9a76a2579b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. Gameloop">
+      <UniqueIdentifier>{2be9322c-00a6-43d9-86ff-5fa7d25d1866}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="00. Include">
+      <UniqueIdentifier>{f5fafab1-e299-47fb-a88e-59e69dc29d10}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. Gameloop\01. Title">
+      <UniqueIdentifier>{24550fb8-b4a2-4049-86fd-91ae35dc695d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. Gameloop\02. Menu">
+      <UniqueIdentifier>{423bcc2f-3c62-43ab-b2f4-35bc708b4094}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. Gameloop\03. SelectStage">
+      <UniqueIdentifier>{0e00d151-b68a-40a6-8eef-a7dea1de7d62}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03. Image\01. String">
+      <UniqueIdentifier>{f0b394d6-c084-4f61-9293-9d0aca9029e0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. Gameloop\04. Clear">
+      <UniqueIdentifier>{2da925b5-a16b-45fa-8c6c-78fcb7c860b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="00. Main">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>00. Main</Filter>
+    </ClCompile>
+    <ClCompile Include="CGameState.cpp">
+      <Filter>01. GameState</Filter>
+    </ClCompile>
+    <ClCompile Include="CObject.cpp">
+      <Filter>02. Object</Filter>
+    </ClCompile>
+    <ClCompile Include="CTitle.cpp">
+      <Filter>04. Gameloop\01. Title</Filter>
+    </ClCompile>
+    <ClCompile Include="CMenu.cpp">
+      <Filter>04. Gameloop\02. Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="CSelectStage.cpp">
+      <Filter>04. Gameloop\03. SelectStage</Filter>
+    </ClCompile>
+    <ClCompile Include="CGameLoop.cpp">
+      <Filter>04. Gameloop</Filter>
+    </ClCompile>
+    <ClCompile Include="CClear.cpp">
+      <Filter>04. Gameloop\04. Clear</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="CGameState.h">
+      <Filter>01. GameState</Filter>
+    </ClInclude>
+    <ClInclude Include="CObject.h">
+      <Filter>02. Object</Filter>
+    </ClInclude>
+    <ClInclude Include="CImage.h">
+      <Filter>03. Image</Filter>
+    </ClInclude>
+    <ClInclude Include="Include.h">
+      <Filter>00. Include</Filter>
+    </ClInclude>
+    <ClInclude Include="CFileSystem.h">
+      <Filter>00. Include</Filter>
+    </ClInclude>
+    <ClInclude Include="GameMode.h">
+      <Filter>04. Gameloop</Filter>
+    </ClInclude>
+    <ClInclude Include="CTitle.h">
+      <Filter>04. Gameloop\01. Title</Filter>
+    </ClInclude>
+    <ClInclude Include="CMenu.h">
+      <Filter>04. Gameloop\02. Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="CSelectStage.h">
+      <Filter>04. Gameloop\03. SelectStage</Filter>
+    </ClInclude>
+    <ClInclude Include="CGameLoop.h">
+      <Filter>04. Gameloop</Filter>
+    </ClInclude>
+    <ClInclude Include="CStringRenderer.h">
+      <Filter>03. Image\01. String</Filter>
+    </ClInclude>
+    <ClInclude Include="CClear.h">
+      <Filter>04. Gameloop\04. Clear</Filter>
+    </ClInclude>
+    <ClInclude Include="CArray2D.h">
+      <Filter>00. Include</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="README.md" />
   </ItemGroup>
 </Project>
