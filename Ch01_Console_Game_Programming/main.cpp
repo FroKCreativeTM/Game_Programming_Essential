@@ -63,19 +63,19 @@ void InitGameStage(Object* state, int w, int h, const char* stageData)
 		}
 	}
 }
-
 bool checkClear(const Object* state, int w, int h)
 {
 	for (size_t i = 0; i < w * h; i++)
 	{
+		// 아직 목적지가 아니라 필드에 있는 박스
 		if (state[i] == OBJ_BLOCK)
 		{
 			return false;
 		}
 	}
+	// 목적지 밖에 있는 박스가 없다면!
 	return true;
 }
-
 // 현재 정보를 바탕으로 게임의 화면을 그린다.
 void Draw(const Object* state, int w, int h)
 {
@@ -91,7 +91,6 @@ void Draw(const Object* state, int w, int h)
 		cout << endl;
 	}
 }
-
 // 사용자의 입력을 받은대로 각 객체들을 갱신한다.
 void Update(Object* state, char input, int w, int h)
 {
@@ -147,12 +146,16 @@ void Update(Object* state, char input, int w, int h)
 
 	if (state[tp] == OBJ_SPACE || state[tp] == OBJ_GOAL)
 	{
+		// 삼항 연산자
+		// (조건문) ? (true인 경우) : (false)인 경우
+
 		// 이동할 곳이 목적지라면 목적지 위 사람, 아니면 그냥 사람
 		state[tp] = (state[tp] == OBJ_GOAL) ? OBJ_PLAYER_ON_GOAL : OBJ_PLAYER;
 
 		// 현재 플레이어의 위치가 목적지 위라면 목적지로 아니면 공백으로
 		state[p] = (state[p] == OBJ_PLAYER_ON_GOAL) ? OBJ_GOAL : OBJ_SPACE;
 	}
+
 	// B. 만약 이동할 곳이 상자 -> 그 방향의 다음칸이 공백이거나 목적지라면 이동 가능
 	else if (state[tp] == OBJ_BLOCK || state[tp] == OBJ_BLOCK_ON_GOAL)
 	{
@@ -161,6 +164,8 @@ void Update(Object* state, char input, int w, int h)
 		int ty2 = ty + dy;
 
 		// 밀 수 없다.
+		// 윈도우 창으로 따지면, 윈도우 창 밖으로 못 밀어낸다.
+		// 즉 스테이지 밖으로 밀 수 없다!
 		if (tx2 < 0 || ty2 < 0 || tx2 >= w || ty2 >= h)
 		{
 			return;
